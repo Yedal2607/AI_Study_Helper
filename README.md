@@ -29,7 +29,7 @@ Setup and Installation
 
 1. Clone the repository  
    ```bash
-   git clone git@github.com:YourUsername/ai-study-helper.git
+   git clone git@github.com:Yedal2607/ai-study-helper.git
 
 2. Navigate into the project folder
    ```bash
