@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        //Inter font for navbar elements
+        navbar: ["Inter", "sans-serif"]
+      },
       keyframes: {
         //Water wave animation for the background
         water: {
