@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
-    <nav >
-      
+    <nav>
 
       {/*Center Nav elements*/}
       <div >
-        <Link to="/">Home</Link>
-        <Link to="/about" >About</Link>
-        <Link to="/contact" >Contact</Link>
+        <Link to="/" className="text-[#ffffff]">Home</Link>
       </div>
     </nav>
   )
