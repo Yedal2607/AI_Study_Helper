@@ -1,4 +1,6 @@
 import Navbar from "./components/Navbar"
+import { Routes,Route } from "react-router-dom"
+import UploadPage from "./pages/upload"
 
 function App() {
 
@@ -7,6 +9,11 @@ function App() {
       <header className="flex justify-center items-center bg-[#252a31] ">
         <Navbar/>
       </header>
+      <Routes>
+        <Route path="/upload" element={<UploadPage/>}>
+          
+        </Route>
+      </Routes>
     </div>
   )
 
