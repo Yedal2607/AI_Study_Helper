@@ -13,7 +13,7 @@ const api = new OpenAI({
   baseURL,
 });
 
-const AskIA = async (userPrompt) => {
+const AskAI = async (userPrompt) => {
   try {
     const completion = await api.chat.completions.create({
       model: "mistralai/Mistral-7B-Instruct-v0.2",
@@ -39,4 +39,4 @@ const AskIA = async (userPrompt) => {
   }
 };
 
-export default AskIA;
+export default AskAI;

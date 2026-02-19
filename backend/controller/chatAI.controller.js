@@ -1,11 +1,11 @@
-import AskIA from "../service/chatAi.service.js" 
+import AskAI from "../service/chatAi.service.js" 
 
 
-export const chatIA = async (req,res)=>{
+export const chatAI = async (req,res)=>{
 
     const {message} = req.body;
 
-    const anwser = await AskIA(message);
+    const anwser = await AskAI(message);
 
     res.status(200).json({response: anwser})
 

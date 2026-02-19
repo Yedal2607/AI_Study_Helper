@@ -1,7 +1,7 @@
 import { Router } from "express";
-import {chatIA} from "../controller/chatAI.controller.js"
+import {chatAI} from "../controller/chatAI.controller.js"
 const router = Router();
 
-router.post("/askia",chatIA)
+router.post("/askai",chatAI)
 
 export default router;

@@ -5,7 +5,7 @@ function ChatBox() {
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const askIA = async (e) => {
+  const askAI = async (e) => {
     e.preventDefault();
 
     const message = text.trim();
@@ -16,7 +16,7 @@ function ChatBox() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/user/askia", {
+      const response = await fetch("http://localhost:5000/user/askai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function ChatBox() {
         {loading && <p className="animate-pulse text-white">Thinking...</p>}
       </div>
 
-      <form onSubmit={askIA} className="flex gap-2">
+      <form onSubmit={askAI} className="flex gap-2">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
