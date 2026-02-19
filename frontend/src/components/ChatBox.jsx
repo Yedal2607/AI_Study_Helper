@@ -16,7 +16,7 @@ function ChatBox() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/user/askai", {
+      const response = await fetch("http://localhost:5000/chat/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
