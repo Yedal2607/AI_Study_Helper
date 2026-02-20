@@ -42,9 +42,9 @@ function ChatBox() {
         className="mb-4 h-[60vh] overflow-y-auto rounded-md border border-white/20 p-3"
       >
         {answer && (
-          <p className="text-white">
+          <div className="text-white">
             <ReactMarkdown>{answer}</ReactMarkdown>
-          </p>
+          </div>
         )}
         {loading && <p className="animate-pulse text-white">Thinking...</p>}
       </div>
