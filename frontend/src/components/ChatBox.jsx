@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 function ChatBox() {
   const [text, setText] = useState("");
@@ -36,8 +37,15 @@ function ChatBox() {
 
   return (
     <section className="mx-auto w-full max-w-2xl p-4">
-      <div aria-live="polite" className="mb-4 h-[60vh] overflow-y-auto rounded-md border border-white/20 p-3">
-        {answer && <p className="text-white">{answer}</p>}
+      <div
+        aria-live="polite"
+        className="mb-4 h-[60vh] overflow-y-auto rounded-md border border-white/20 p-3"
+      >
+        {answer && (
+          <p className="text-white">
+            <ReactMarkdown>{answer}</ReactMarkdown>
+          </p>
+        )}
         {loading && <p className="animate-pulse text-white">Thinking...</p>}
       </div>
 
