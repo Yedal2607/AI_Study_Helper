@@ -36,38 +36,91 @@ function ChatBox() {
   };
 
   return (
-    <section className="mx-auto w-full max-w-2xl p-4">
+    <section className="flex flex-col mx-auto p-4">
       <div
         aria-live="polite"
-        className="mb-4 h-[60vh] overflow-y-auto rounded-md border border-white/20 p-3"
+        className="mb-4 h-[82vh] overflow-y-auto rounded-md border border-white/15 p-3"
       >
         {answer && (
-          <div className="text-white">
-            <ReactMarkdown>{answer}</ReactMarkdown>
+          <div className="text-sm mx-auto max-w-xl text-white whitespace-pre-wrap space-y-3">
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => (
+                  <h1 className="text-4xl font-bold mb-4">{children}</h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-3xl font-semibold mb-3">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-2xl font-semibold mb-2">{children}</h3>
+                ),
+                h4: ({ children }) => (
+                  <h4 className="text-xl font-medium mb-2">{children}</h4>
+                ),
+                h5: ({ children }) => (
+                  <h5 className="text-lg font-medium mb-1">{children}</h5>
+                ),
+                h6: ({ children }) => (
+                  <h6 className="text-base font-medium mb-1">{children}</h6>
+                ),
+                p: ({ children }) => (
+                  <p className="text-base mb-2">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc pl-5">{children}</ul>
+                ),
+                li: ({ children }) => (
+                  <li>{children}</li>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal pl-5">{children}</ol>
+                ),
+              }}
+            >
+              {answer}
+            </ReactMarkdown>
           </div>
         )}
-        {loading && <p className="animate-pulse text-white">Thinking...</p>}
+        {loading && (
+          <p className="mx-auto max-w-xl my-5 animate-pulse text-white ">
+            Thinking...
+          </p>
+        )}
+
       </div>
 
-      <form onSubmit={askAI} className="flex gap-2">
+      <form onSubmit={askAI} className="flex max-w-xl w-full mx-auto gap-2">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
           type="text"
           disabled={loading}
           placeholder="Write something to the AI"
-          className="flex-1 rounded-md px-3 py-2"
+          className="flex-1 rounded-xl px-3 py-2 
+bg-[#111827] 
+border border-white/10 
+text-white 
+placeholder:text-gray-400 
+focus:outline-none 
+focus:ring-2 focus:ring-blue-500/40"
         />
         <button
           type="submit"
           value="Send"
           disabled={loading}
-          className="rounded-md bg-white px-4 py-2 text-black"
+          className="rounded-md 
+bg-blue-900 
+hover:bg-white/20 
+border border-white/20
+px-4 py-2 
+text-white 
+font-medium 
+transition-all duration-200"
         >
           Send
         </button>
       </form>
-    </section>
+    </section >
   );
 }
 

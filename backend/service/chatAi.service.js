@@ -2,7 +2,6 @@ import { OpenAI } from "openai/client.js";
 
 const baseURL = "https://api.aimlapi.com/v1";
 
-// Insert your AIML API Key in the quotation marks instead of my_key:
 const apiKey = process.env.AI_API_KEY;
 
 const systemPrompt =
@@ -28,11 +27,10 @@ const AskAI = async (userPrompt) => {
         },
       ],
       temperature: 0.7,
-      max_tokens: 500,
+      max_tokens: 1200,
     });
 
     const response = completion.choices[0].message.content;
-    console.log(response);
     return { mensaje: response };
   } catch (error) {
     return {mensaje: error?.error?.message || "An unexpected error has ocurred"}
