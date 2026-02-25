@@ -1,9 +1,7 @@
-function upload() {
-  return (
-    <div>
-        
-    </div>
-  )
+import ChatBox from "../components/ChatBox";
+
+function Upload() {
+  return <ChatBox />;
 }
 
-export default upload
+export default Upload;
