@@ -5,7 +5,7 @@ function ChatBox() {
   const [text, setText] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const hasConversation = Boolean(answer) || loading;
   const askAI = async (e) => {
     e.preventDefault();
 
@@ -36,10 +36,10 @@ function ChatBox() {
   };
 
   return (
-    <section className="flex flex-col mx-auto p-4">
+    <section className="flex flex-col min-h-[80vh] justify-center mx-auto p-4">
       <div
         aria-live="polite"
-        className="mb-4 h-[82vh] overflow-y-auto rounded-md border border-white/15 p-3"
+        className={`mb-4 overflow-y-auto ${hasConversation ? "h-[82vh]" : ""} rounded-md p-3`}
       >
         {answer && (
           <div className="text-sm mx-auto max-w-xl text-white whitespace-pre-wrap space-y-3">
@@ -70,7 +70,7 @@ function ChatBox() {
                   <ul className="list-disc pl-5">{children}</ul>
                 ),
                 li: ({ children }) => (
-                  <li>{children}</li>
+                  <li className="ml-2" >{children}</li>
                 ),
                 ol: ({ children }) => (
                   <ol className="list-decimal pl-5">{children}</ol>
@@ -88,27 +88,26 @@ function ChatBox() {
         )}
 
       </div>
-
-      <form onSubmit={askAI} className="flex max-w-xl w-full mx-auto gap-2">
+        
+      <form onSubmit={askAI} className={`flex max-w-xl w-full mx-auto transition-all duration-250 ease-in-out`}>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
           type="text"
           disabled={loading}
           placeholder="Write something to the AI"
-          className="flex-1 rounded-xl px-3 py-2 
+          className="flex-1 rounded-l-full px-5 py-4
 bg-[#111827] 
 border border-white/10 
 text-white 
 placeholder:text-gray-400 
-focus:outline-none 
-focus:ring-2 focus:ring-blue-500/40"
+focus:outline-none "
         />
         <button
           type="submit"
           value="Send"
           disabled={loading}
-          className="rounded-md 
+          className="rounded-r-full
 bg-blue-900 
 hover:bg-white/20 
 border border-white/20
