@@ -26,7 +26,7 @@ function ChatBox() {
       });
 
       const data = await response.json();
-      setAnswer(data?.response?.mensaje ?? "");
+      setAnswer(data?.response?.message);
       setText("");
     } catch (error) {
       console.error("Request failed:", error);
