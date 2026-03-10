@@ -7,20 +7,35 @@ A SaaS software with which you can use AI for summarizing PDF, create study flas
 AI Study Helper allows students to upload study materials (like PDFs or text), and it uses AI to generate summaries, quizzes, and flashcards.  
 It’s designed to make studying faster and smarter for high school and university students.
 
+## Current Features
+
+- AI chat interface
+- Send messages and receive AI responses
+- React frontend with a clean UI
+- Express backend API
+- AI service integration
+- Full communication between frontend and backend
+
+More features such as PDF analysis, flashcards, and quizzes are planned.
+## Screenshots
+Example of the AI response inside the chat interface.
+
+![AI Response](docs/images/chat-response.png)
+
 ## Project Structure
 
 project-root/
 │
 ├── frontend/   → React application (user interface)
 ├── backend/    → Express + MongoDB API (server logic)
-├── docs/       → Documentation, diagrams, and API notes
+├── docs/       → Notes, architecture and development documentation
 └── README.md
 
 ## Technologies
 
 - **Frontend:** React, TailwindCSS, Vite  
-- **Backend:** Node.js, Express, MongoDB  
-- **Database:** MongoDB Atlas  
+- **Backend:** Node.js, Express
+- **Database** MongoDB Atlas (upcoming)    
 - **Version Control:** Git + GitHub (SSH setup) 
 
 ## How to run the project
@@ -47,12 +62,23 @@ Setup and Installation
     npm run dev
 
 ## Project Status
-- [x] Repository created  
-- [x] SSH connection configured  
-- [ ] Frontend setup in progress  
-- [ ] Backend initialization upcoming
+Current stage: **MVP**
+Completed
 
-## Author and credits
+Backend API
+- Frontend interface
+- AI chat working
+- ## Author and credits
+
+In progress
+- Study features
+- Flashcards generation
+- PDF analysis
+
+Planned
+- Authentication
+- File uploads
+- Study dashboards
 
 Developed by [Yedal Abreu](https://github.com/Yedal2607)  
 
