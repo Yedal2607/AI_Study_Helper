@@ -65,10 +65,10 @@ Setup and Installation
 Current stage: **MVP**
 Completed
 
-Backend API
+- Backend API
 - Frontend interface
 - AI chat working
-- ## Author and credits
+
 
 In progress
 - Study features
@@ -80,6 +80,7 @@ Planned
 - File uploads
 - Study dashboards
 
+## Author
 Developed by [Yedal Abreu](https://github.com/Yedal2607)  
 
 An aspiring fullstack developer passionate about building practical AI-powered tools😁.
