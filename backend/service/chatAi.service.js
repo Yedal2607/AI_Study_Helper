@@ -1,30 +1,32 @@
-const apiKey = process.env.AI_API_KEY;
+import { OpenAI } from "openai";
+
+const api = new OpenAI({
+  baseURL: "https://api.aimlapi.com/v1",
+  apiKey: process.env.AI_API_KEY,
+});
 
 async function AskAI(userPrompt) {
   try {
-    const response = await fetch("https://api.aimlapi.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemma-3-4b-it",
-        messages: [
-          {
-            role: "user",
-            content: userPrompt,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 1200,
-      }),
+    const response = await api.chat.completions.create({
+      model: "openai/gpt-5-2",
+      messages: [
+        {
+          role: "system",
+          content: "You are an AI assistant who knows everything.",
+        },
+        {
+          role: "user",
+          content: userPrompt,
+        },
+      ],
     });
 
-    const data = await response.json();
-    const answer = data.choices[0].message.content;
+    const answer =
+      response?.choices?.[0]?.message?.content ??
+      "AI service returned an unexpected response";
     return { message: answer };
   } catch (error) {
+    console.error(error);
     return {
       message: error?.error?.message || "An unexpected error has ocurred",
     };

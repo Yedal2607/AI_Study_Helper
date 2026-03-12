@@ -30,6 +30,7 @@ function ChatBox() {
       setText("");
     } catch (error) {
       console.error("Request failed:", error);
+      setAnswer("Something went wrong. The server is unreachable.")
     } finally {
       setLoading(false);
     }
@@ -42,17 +43,17 @@ function ChatBox() {
         className={`mb-4 overflow-y-auto ${hasConversation ? "h-[82vh]" : ""} rounded-md p-3`}
       >
         {answer && (
-          <div className="text-sm mx-auto max-w-xl text-white whitespace-pre-wrap space-y-3">
+          <div className="text-sm mx-auto max-w-2xl text-white whitespace-pre-wrap space-y-3">
             <ReactMarkdown
               components={{
                 h1: ({ children }) => (
                   <h1 className="text-4xl font-bold mb-4">{children}</h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-3xl font-semibold mb-3">{children}</h2>
+                  <h2 className="text-2xl font-semibold mb-3">{children}</h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-2xl font-semibold mb-2">{children}</h3>
+                  <h3 className="text-xl font-semibold mb-2">{children}</h3>
                 ),
                 h4: ({ children }) => (
                   <h4 className="text-xl font-medium mb-2">{children}</h4>
@@ -82,14 +83,14 @@ function ChatBox() {
           </div>
         )}
         {loading && (
-          <p className="mx-auto max-w-xl my-5 animate-pulse text-white ">
+          <p className="mx-auto max-w-2xl my-5 animate-pulse text-white ">
             Thinking...
           </p>
         )}
 
       </div>
         
-      <form onSubmit={askAI} className={`flex max-w-xl w-full mx-auto transition-all duration-250 ease-in-out`}>
+      <form onSubmit={askAI} className={`flex max-w-xl w-full mx-auto transition-all duration-400 ease-in-out ${Boolean(text) ? "max-w-2xl" : ""}`}>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
