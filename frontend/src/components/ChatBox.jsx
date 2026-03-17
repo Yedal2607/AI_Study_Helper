@@ -13,7 +13,7 @@ function ChatBox() {
     if (!message) {
       return;
     }
-
+    setText("");
     setLoading(true);
 
     try {
@@ -27,7 +27,6 @@ function ChatBox() {
 
       const data = await response.json();
       setAnswer(data?.response?.message);
-      setText("");
     } catch (error) {
       console.error("Request failed:", error);
       setAnswer("Something went wrong. The server is unreachable.")
@@ -90,7 +89,7 @@ function ChatBox() {
 
       </div>
         
-      <form onSubmit={askAI} className={`flex max-w-xl w-full mx-auto transition-all duration-400 ease-in-out ${Boolean(text) ? "max-w-2xl" : ""}`}>
+      <form onSubmit={askAI} className={`flex ${Boolean(text) ? "max-w-2xl" : "max-w-xl"} w-full mx-auto transition-all duration-400 ease-in-out `}>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
