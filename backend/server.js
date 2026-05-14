@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose"
 import chatAIRouter from "./routes/chatAI.routes.js";
 import auth from "./routes/auth.routes.js"
 
@@ -15,7 +16,14 @@ app.use(cors());
 app.use("/auth", auth)
 app.use("/chat", chatAIRouter);
 
-
+/* MongoDB connection*/
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 /* Server */
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
