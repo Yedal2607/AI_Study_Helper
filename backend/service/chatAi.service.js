@@ -8,7 +8,7 @@ const api = new OpenAI({
 async function AskAI(userPrompt) {
   try {
     const response = await api.chat.completions.create({
-      model: "openai/gpt-5-2",
+      model: process.env.AI_MODEL,
       messages: [
         {
           role: "system",
