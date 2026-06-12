@@ -17,7 +17,7 @@ function ChatBox() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/chat/ask", {
+      const response = await fetch(import.meta.env.VITE_AI_CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ function ChatBox() {
           placeholder="Write something to the AI"
           className="flex-1 rounded-l-full px-5 py-4
 bg-[#111827] 
-border border-white/10 
+border border-white/10
 text-white 
 placeholder:text-gray-400 
 focus:outline-none "
