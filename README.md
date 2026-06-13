@@ -74,9 +74,9 @@ In progress
 - Study features
 - Flashcards generation
 - PDF analysis
-
-Planned
 - Authentication
+  
+Planned
 - File uploads
 - Study dashboards
 
