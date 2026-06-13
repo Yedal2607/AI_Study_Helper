@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar"
 import { Routes,Route } from "react-router-dom"
-import UploadPage from "./pages/upload"
+import ChatPage from "./pages/Chat"
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
         <Navbar/>
       </header>
       <Routes>
-        <Route path="/upload" element={<UploadPage/>}>
+        <Route path="/chat" element={<ChatPage/>}>
           
         </Route>
       </Routes>
