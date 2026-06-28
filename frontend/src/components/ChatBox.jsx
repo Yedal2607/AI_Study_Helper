@@ -37,14 +37,14 @@ function ChatBox() {
   };
 
   return (
-    <main className="relative min-h-[calc(100vh-0px)] overflow-hidden bg-[#111418] text-white">
+    <main className="relative h-[calc(100vh-72px)] overflow-hidden bg-[#111418] text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.28),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.18),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.02),_transparent_45%)]" />
       <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-blue-500/15 blur-3xl" />
       <div className="absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px] opacity-20" />
 
-      <section className="relative mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-6xl flex-col justify-between gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/30 backdrop-blur-xl">
+      <section className="relative mx-auto flex h-full w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-4xl flex-1 min-h-0 flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/30 backdrop-blur-xl">
           <div className="border-b border-white/10 px-5 py-4 sm:px-6">
             <p className="text-xs uppercase tracking-[0.35em] text-sky-300/80">AI Study Helper</p>
             <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Study chat</h1>
@@ -55,8 +55,8 @@ function ChatBox() {
 
           <div
             aria-live="polite"
-            className={`flex-1 overflow-y-auto px-5 py-6 sm:px-6 ${
-              hasConversation ? "min-h-[42vh]" : "flex items-center justify-center"
+            className={`flex-1 min-h-0 overflow-y-auto px-5 py-6 sm:px-6 ${
+              hasConversation ? "" : "flex items-center justify-center"
             }`}
           >
             {answer ? (
@@ -109,7 +109,7 @@ function ChatBox() {
                 <p className="text-xs uppercase tracking-[0.35em] text-sky-300/80">Ready when you are</p>
                 <h2 className="mt-3 text-2xl font-semibold">What do you want to study today?</h2>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
-                  Puedes preguntar por conceptos, ejercicios, resúmenes o explicaciones paso a paso.
+                  You can ask about concepts, exercises, summaries, or step-by-step explanations.
                 </p>
               </div>
             )}
@@ -118,7 +118,7 @@ function ChatBox() {
 
         <form
           onSubmit={askAI}
-          className={`mx-auto flex w-full max-w-4xl items-center rounded-full border border-white/10 bg-[#141922]/95 p-2 shadow-2xl shadow-black/30 backdrop-blur-xl transition-all duration-300 ${
+          className={`mx-auto flex w-full max-w-4xl shrink-0 items-center rounded-full border border-white/10 bg-[#141922]/95 p-2 shadow-2xl shadow-black/30 backdrop-blur-xl transition-all duration-300 ${
             text ? "max-w-4xl" : "max-w-3xl"
           }`}
         >
