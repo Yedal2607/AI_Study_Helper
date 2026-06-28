@@ -1,14 +1,33 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from "../context/AuthContext";
 function Navbar() {
-  return (
-    <nav className="w-[80%]  ">
+  const { logout } = useAuth();
 
-      <div className="flex h-[60px] items-center">
-        <Link to="/" className=" px-4 rounded-lg text-[1.5em] text-[#ffffff] font-inter font-[700] transition duration-130 hover:scale-[1.3] hover:bg-slate-500">
+  const handleLogout = () => {
+    logout();
+  };
+
+  return (
+    <nav className="mx-auto flex w-full items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
+      <div className="ml-40 flex items-center">
+        <Link
+          to="/chat"
+          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-lg text-white shadow-lg shadow-black/20 transition duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+        >
           <FontAwesomeIcon icon={faHouse} />
         </Link>
+      </div>
+      <div className="mr-40 pl-4 sm:pl-6">
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+        >
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          Logout
+        </button>
       </div>
     </nav>
   )

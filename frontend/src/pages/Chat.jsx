@@ -1,7 +1,7 @@
 import ChatBox from "../components/ChatBox";
 
-function Upload() {
+function Chat() {
   return <ChatBox />;
 }
 
-export default Upload;
+export default Chat;
