@@ -2,7 +2,7 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/user.model.js";
 
-export const registerUser = async (email, password) => {
+export const registerUser = async (fullName, email, password) => {
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
@@ -12,12 +12,14 @@ export const registerUser = async (email, password) => {
   const hashedPassword = await bcrypt.hash(password, 10);
  
   const user = await User.create({
+    fullName,
     email,
     password: hashedPassword,
   });
   
   return {
     id: user._id,
+    fullName: user.fullName,
     email: user.email,
   }
 }
@@ -40,6 +42,7 @@ export const loginUser = async(email,password) =>{
     token,
     user: {
       id: user._id,
+      fullName: user.fullName,
       email: user.email
     }
   }
