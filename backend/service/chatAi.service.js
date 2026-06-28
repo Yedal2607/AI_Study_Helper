@@ -1,4 +1,9 @@
+import { OpenAI } from "openai";
 
+const api = new OpenAI({
+  baseURL: "https://api.aimlapi.com/v1",
+  apiKey: process.env.AI_API_KEY,
+});
 async function AskAI(userPrompt) {
   try {
     const response = await api.chat.completions.create({
