@@ -1,9 +1,3 @@
-import { OpenAI } from "openai";
-
-const api = new OpenAI({
-  baseURL: "https://api.aimlapi.com/v1",
-  apiKey: process.env.AI_API_KEY,
-});
 
 async function AskAI(userPrompt) {
   try {
@@ -20,10 +14,9 @@ async function AskAI(userPrompt) {
         },
       ],
     });
-
-    const answer =
-      response?.choices?.[0]?.message?.content ??
-      "AI service returned an unexpected response";
+    const data = await response.json();
+    const answer = data?.choices?.[0]?.message?.content || data?.message;
+    ("AI service returned an unexpected response");
     return { message: answer };
   } catch (error) {
     console.error(error);
