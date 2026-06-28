@@ -66,51 +66,13 @@ export const Register = () => {
   };
 
   return (
-    <main className="relative min-h-[calc(100vh-0px)] overflow-hidden bg-[#111418] text-white">
+    <main className="flex justify-center   min-h-[calc(100vh-0px)] overflow-hidden bg-[#111418] text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.28),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.18),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.02),_transparent_45%)]" />
       <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-blue-500/15 blur-3xl" />
       <div className="absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
 
-      <section className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col justify-center rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-8 lg:p-10">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[#1b2230] shadow-lg shadow-black/20">
-                <img src={logo} alt="Study Helper" className="h-10 w-10 object-contain" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.35em] text-sky-300/80">AI Study Helper</p>
-                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Create your account</h1>
-              </div>
-            </div>
-
-            <p className="mt-5 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
-              Join the platform to save your progress, organize your study sessions,
-              and keep everything in one place.
-            </p>
-
-            <div className="mt-8 gap-4">
-              <div className="rounded-2xl border border-white/10 bg-[#171d28] p-4">
-                <h2 className="mt-1 text-lg font-semibold">Start learning faster</h2>
-                <p className="mt-2 text-sm text-slate-400">
-                  Create an account and get ready to continue your study journey without losing progress.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                Secure access
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                Simple setup
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                Study ready
-              </span>
-            </div>
-          </div>
-
+      <section className="flex min-h-screen justify-center w-full max-w-6xl items-center px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid w-[50%] ">
           <div className="flex items-center">
             <form
               onSubmit={handleSubmit}
