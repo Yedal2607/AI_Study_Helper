@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from "../context/AuthContext";
 function Navbar() {
-  const navigate = useNavigate();
   const { logout } = useAuth();
 
   const handleLogout = () => {
