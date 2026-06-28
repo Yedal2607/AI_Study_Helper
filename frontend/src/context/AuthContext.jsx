@@ -1,28 +1,26 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
-
-  const savedToken = localStorage.getItem("token");
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
+  const [isAuthenticated, setIsAuthenticated] = useState(() => Boolean(localStorage.getItem("token")));
 
   useEffect(() => {
-    if (savedToken) {
-      setToken(savedToken);
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
+    setIsAuthenticated(Boolean(token));
   }, [token]);
 
-  const login = (userData, userToken) => {
-    localStorage.setItem("token", userToken);
+  const login = (userData, userToken, rememberMe) => {
     setUser(userData);
     setToken(userToken);
     setIsAuthenticated(true);
+    if (rememberMe) {
+      localStorage.setItem("token", userToken);
+    } else {
+      localStorage.removeItem("token");
+    }
   };
   const logout = () => {
     localStorage.removeItem("token");
@@ -39,6 +37,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-export const useAuth = ()=>{
-  useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

@@ -89,7 +89,7 @@ function ChatBox() {
 
       </div>
         
-      <form onSubmit={askAI} className={`flex ${Boolean(text) ? "max-w-2xl" : "max-w-xl"} w-full mx-auto transition-all duration-400 ease-in-out `}>
+      <form onSubmit={askAI} className={`flex ${text ? "max-w-2xl" : "max-w-xl"} w-full mx-auto transition-all duration-400 ease-in-out `}>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
