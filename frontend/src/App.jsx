@@ -11,9 +11,9 @@ function App() {
   const showNavbar = location.pathname !== "/" && location.pathname !== "/register";
 
   return (
-    <div className="min-h-screen bg-[#111418] ">
+    <div className="min-h-screen bg-[#111418] text-white">
       {showNavbar && (
-        <header className="flex justify-center items-center bg-[#252a31] ">
+        <header className="sticky top-0 z-20 border-b border-white/10 bg-[#111418]/70 backdrop-blur-xl">
           <Navbar/>
         </header>
       )}
