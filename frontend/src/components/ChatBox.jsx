@@ -27,7 +27,11 @@ function ChatBox() {
       });
 
       const data = await response.json();
-      setAnswer(data?.response?.message);
+      if(data?.response?.message != ""){
+        setAnswer(data?.response?.message)
+        return
+      }
+      setAnswer("Something went wrong")
     } catch (error) {
       console.error("Request failed:", error);
       setAnswer("Something went wrong. The server is unreachable.");

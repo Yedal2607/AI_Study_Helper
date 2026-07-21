@@ -1,26 +1,18 @@
-import { OpenAI } from "openai";
-
-const api = new OpenAI({
-  baseURL: "https://api.aimlapi.com/v1",
-  apiKey: process.env.AI_API_KEY,
-});
 async function AskAI(userPrompt) {
   try {
-    const response = await api.chat.completions.create({
-      model: process.env.AI_MODEL,
-      messages: [
-        {
-          role: "system",
-          content: "You are an AI assistant who knows everything.",
-        },
-        {
-          role: "user",
-          content: userPrompt,
-        },
-      ],
-    });
+    const response = await fetch("http://localhost:11434/api/generate", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    model: "qwen2.5:7b",
+    prompt: userPrompt,
+    stream: false
+  })
+});
     const data = await response.json();
-    const answer = data?.choices?.[0]?.message?.content || data?.message;
+    const answer = data.response;
     ("AI service returned an unexpected response");
     return { message: answer };
   } catch (error) {
