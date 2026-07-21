@@ -1,9 +1,9 @@
 import Navbar from "./components/Navbar"
 import { Navigate, Route, Routes, useLocation } from "react-router-dom"
-import ChatPage from "./pages/Chat"
-import { Login } from "./pages/Login"
-import { Register } from "./pages/Register"
-import { useAuth } from "./features/ai-chat/authentication/context/AuthContext"
+import ChatPage from "./features/ai-chat/pages/Chat"
+import { Login } from "./features/authentication/pages/Login"
+import { Register } from "./features/authentication/pages/Register"
+import { useAuth } from "./features/authentication/context/AuthContext"
 
 function App() {
   const { isAuthenticated } = useAuth();

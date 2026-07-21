@@ -9,7 +9,7 @@ import {
   faLock,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/Logo.png";
+import logo from "../../../assets/Logo.png";
 
 export const Register = () => {
   const navigate = useNavigate();

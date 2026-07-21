@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import { useAuth } from "../features/ai-chat/authentication/context/AuthContext";
+import { useAuth } from "../features/authentication/context/AuthContext";
 function Navbar() {
   const { logout } = useAuth();
 

@@ -10,7 +10,7 @@ import {
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/Logo.png";
+import logo from "../../../assets/Logo.png";
 
 export const Login = () => {
   const navigate = useNavigate();
