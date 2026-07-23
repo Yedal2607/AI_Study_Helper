@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose"
-import chatAIRouter from "./routes/chatAI.routes.js";
-import auth from "./routes/auth.routes.js"
+import chatAIRouter from "./features/ai-chat/routes/chatAI.routes.js";
+import auth from "./features/authentication/routes/auth.routes.js"
 
 const app = express();
 const PORT = process.env.BACKEND_PORT;
