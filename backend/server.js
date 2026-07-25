@@ -19,6 +19,14 @@ app.use(cors({
 app.use("/auth", auth)
 app.use("/chat", chatAIRouter);
 
+/*Error Handling*/
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    message: err.message || "Error interno del servidor"
+  });
+});
+
 /* MongoDB connection*/
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
