@@ -1,6 +1,6 @@
 import { registerUser, loginUser } from "../service/auth.service.js";
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   try {
     const { fullName, email, password } = req.body;
 
@@ -8,9 +8,7 @@ export const register = async (req, res) => {
 
     res.status(201).json(user);
   } catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
+    next(error);
   }
 };
 export const login = async (req, res) => {
@@ -23,8 +21,6 @@ export const login = async (req, res) => {
   
   }
     catch (error) {
-    res.status(400).json({
-      message: error.message,
-    });
+    next(error);
   }
 }

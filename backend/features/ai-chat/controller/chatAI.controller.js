@@ -1,6 +1,6 @@
 import AskAI from "../service/chatAi.service.js";
 
-export const chatAI = async (req, res) => {
+export const chatAI = async (req, res, next) => {
   try {
     const { message } = req.body ?? {};
     if (!message || typeof message !== "string") {
@@ -9,6 +9,6 @@ export const chatAI = async (req, res) => {
     const answer = await AskAI(message);
     return res.status(200).json({ response: answer });
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    next(error);
   }
 };
