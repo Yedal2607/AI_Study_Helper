@@ -46,6 +46,7 @@ and AI-powered conversation.
 - React Router
 - Express REST API
 - MongoDB integration
+  
 The current AI chat is an initial implementation and is not yet the complete Study Session
 experience defined by the domain model.
 Future development will expand this foundation into the adaptive learning system described in the
@@ -238,4 +239,4 @@ An aspiring full-stack developer passionate about building practical software pr
 powered systems.
 
 ## License
-This project is open-source and available und
+This project is open-source and available under MIT license
