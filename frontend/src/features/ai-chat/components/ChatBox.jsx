@@ -25,7 +25,7 @@ function ChatBox() {
             }`}
           >
             {answer ? (
-              <div className="mx-auto w-full max-w-3xl rounded-[1.5rem] border border-white/10 bg-[#141922]/90 p-5 text-sm whitespace-pre-wrap shadow-lg shadow-black/20 sm:p-6">
+              <div className="mx-auto w-full max-w-3xl rounded-[1.5rem] border-[0]  p-5 text-sm whitespace-pre-wrap  sm:p-6">
                 <ReactMarkdown
                   components={{
                     h1: ({ children }) => (

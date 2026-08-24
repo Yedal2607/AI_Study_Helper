@@ -6,10 +6,10 @@ async function AskAI(userPrompt) {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    model: "qwen2.5:7b",
+    model: process.env.AI_MODEL,
     prompt: userPrompt,
     stream: false
-  })
+  }) 
 });
     const data = await response.json();
     const answer = data.response;
