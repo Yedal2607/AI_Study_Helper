@@ -11,15 +11,17 @@ async function AskAI(userPrompt) {
     stream: false
   }) 
 });
+    if(!response.ok){
+      throw new Error("AI service Error")
+    }
     const data = await response.json();
     const answer = data.response;
     ("AI service returned an unexpected response");
     return { message: answer };
   } catch (error) {
     console.error(error);
-    return {
-      message: error?.error?.message || "An unexpected error has ocurred",
-    };
+    error.status = 502
+    throw error 
   }
 }
 
