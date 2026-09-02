@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useAuth } from "../../authentication/context/AuthContext";
 export const useSendAIMessage = ()=>{
   const [text, setText] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const hasConversation = Boolean(answer) || loading;
+  const {token} = useAuth();
   const askAI = async (e) => {
     e.preventDefault();
 
@@ -20,6 +22,7 @@ export const useSendAIMessage = ()=>{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ message }),
       });
