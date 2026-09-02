@@ -25,10 +25,10 @@ function App() {
       )}
       <div className="relative z-10">
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Login />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Login />} />
           <Route path="/register" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Register />} />
-          <Route path="/chat" element={isAuthenticated ? <ChatPage/> : <Navigate to="/" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/chat" element={isAuthenticated ? <ChatPage/> : <Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </div>
