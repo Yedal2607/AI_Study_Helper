@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../../authentication/context/AuthContext";
-export const useSendAIMessage = ()=>{
+export const useSendAIMessage = () => {
   const [text, setText] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const hasConversation = Boolean(answer) || loading;
-  const {token} = useAuth();
+  const { token, logout } = useAuth();
   const askAI = async (e) => {
     e.preventDefault();
 
@@ -26,9 +26,12 @@ export const useSendAIMessage = ()=>{
         },
         body: JSON.stringify({ message }),
       });
-
+      if (response.status === 401) {
+        logout();
+        return;
+      }
       const data = await response.json();
-      if(data?.response?.message != ""){
+      if (data?.response?.message != "") {
         setAnswer(data?.response?.message)
         return
       }
@@ -40,5 +43,5 @@ export const useSendAIMessage = ()=>{
       setLoading(false);
     }
   };
-  return {text, setText, answer, loading, hasConversation, askAI}
+  return { text, setText, answer, loading, hasConversation, askAI }
 }
