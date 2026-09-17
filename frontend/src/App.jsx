@@ -8,7 +8,7 @@ import { useAuth } from "./features/authentication/context/AuthContext"
 function App() {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-  const showNavbar = location.pathname !== "/" && location.pathname !== "/register";
+  const showNavbar = location.pathname !== "/login" && location.pathname !== "/register";
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#111418] text-white">

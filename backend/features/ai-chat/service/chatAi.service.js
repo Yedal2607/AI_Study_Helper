@@ -10,7 +10,7 @@ async function AskAI(userPrompt) {
     prompt: userPrompt,
     stream: false
   }) 
-});
+}); 
     if(!response.ok){
       throw new Error("AI service Error")
     }
