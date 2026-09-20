@@ -8,7 +8,7 @@ import { useAuth } from "./features/authentication/context/AuthContext"
 function App() {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-  const showNavbar = location.pathname !== "/" && location.pathname !== "/register";
+  const showNavbar = location.pathname !== "/login" && location.pathname !== "/register";
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#111418] text-white">
@@ -25,10 +25,10 @@ function App() {
       )}
       <div className="relative z-10">
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Login />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Login />} />
           <Route path="/register" element={isAuthenticated ? <Navigate to="/chat" replace /> : <Register />} />
-          <Route path="/chat" element={isAuthenticated ? <ChatPage/> : <Navigate to="/" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/chat" element={isAuthenticated ? <ChatPage/> : <Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </div>
