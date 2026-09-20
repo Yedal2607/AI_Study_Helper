@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { useAuth } from "../../authentication/context/AuthContext";
+
 export const useSendAIMessage = () => {
   const [text, setText] = useState("");
+  const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
-  const hasConversation = Boolean(answer) || loading;
+  const hasConversation = Boolean(question) || loading;
   const { token, logout } = useAuth();
+
   const askAI = async (e) => {
     e.preventDefault();
 
     const message = text.trim();
-    if (!message) {
+    if (!message || loading) {
       return;
     }
+
     setText("");
+    setQuestion(message);
     setAnswer("");
     setLoading(true);
 
@@ -22,20 +27,18 @@ export const useSendAIMessage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ message }),
       });
+
       if (response.status === 401) {
         logout();
         return;
       }
+
       const data = await response.json();
-      if (data?.response?.message != "") {
-        setAnswer(data?.response?.message)
-        return
-      }
-      setAnswer("Something went wrong")
+      setAnswer(data?.response?.message || "Something went wrong");
     } catch (error) {
       console.error("Request failed:", error);
       setAnswer("Something went wrong. The server is unreachable.");
@@ -43,5 +46,6 @@ export const useSendAIMessage = () => {
       setLoading(false);
     }
   };
-  return { text, setText, answer, loading, hasConversation, askAI }
-}
+
+  return { text, setText, question, answer, loading, hasConversation, askAI };
+};
