@@ -4,12 +4,12 @@ import { useSendAIMessage } from "../hooks/useSendAIMessage";
 function ChatBox() {
   const {
     text, setText, messages, conversations, activeChatId, loading, historyLoading,
-    sidebarOpen, setSidebarOpen, askAI, selectConversation, newConversation,
+    sidebarOpen, setSidebarOpen, askAI, selectConversation, newConversation, logout,
   } = useSendAIMessage();
   const hasConversation = messages.length > 0;
 
   return (
-    <main className="flex h-[calc(100vh-65px)] overflow-hidden text-white">
+    <main className="flex h-screen overflow-hidden text-white">
       <aside className={`${sidebarOpen ? "w-72" : "w-0"} shrink-0 overflow-hidden border-r border-white/10 bg-[#151a22]/95 transition-[width] duration-300`}>
         <div className="flex h-full w-72 flex-col p-3">
           <button type="button" onClick={newConversation} disabled={loading} className="mb-4 flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-semibold transition hover:bg-white/10 disabled:opacity-50">
@@ -23,6 +23,9 @@ function ChatBox() {
               </button>
             ))}
           </div>
+          <button type="button" onClick={logout} className="mt-3 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-red-500/15 hover:text-red-200">
+            <span aria-hidden="true">↪</span> Cerrar sesión
+          </button>
         </div>
       </aside>
 
@@ -49,3 +52,5 @@ function ChatBox() {
 }
 
 export default ChatBox;
+
+

@@ -94,6 +94,8 @@ export const useSendAIMessage = () => {
 
   return {
     text, setText, messages, conversations, activeChatId, loading, historyLoading,
-    sidebarOpen, setSidebarOpen, askAI, selectConversation, newConversation,
+    sidebarOpen, setSidebarOpen, askAI, selectConversation, newConversation, logout,
   };
 };
+
+
