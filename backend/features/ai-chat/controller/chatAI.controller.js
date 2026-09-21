@@ -1,11 +1,10 @@
 ﻿import mongoose from "mongoose";
-import AskAI from "../service/chatAi.service.js";
+import AskAI, { generateChatTitle } from "../service/chatAi.service.js";
 import {
   createChat,
   getChatByIdForUser,
   getChatsByUser,
   getMessagesByChat,
-  getNextChatTitle,
   saveMessage,
 } from "../service/chatHistory.service.js";
 
@@ -41,6 +40,7 @@ export const chatAI = async (req, res, next) => {
     const content = typeof message === "string" ? message.trim() : "";
     if (!content) return res.status(400).json({ error: "message is required" });
 
+    const isNewChat = !chatId;
     let chat;
     let previousMessages = [];
     if (chatId) {
@@ -49,18 +49,23 @@ export const chatAI = async (req, res, next) => {
       if (!chat) return res.status(404).json({ error: "Chat not found" });
       previousMessages = await getMessagesByChat(chat._id);
     } else {
-      chat = await createChat({
-        userID: req.user.userId,
-        title: await getNextChatTitle(req.user.userId),
-      });
+      chat = await createChat({ userID: req.user.userId, title: "Nueva conversación" });
     }
 
     const answer = await AskAI(content, previousMessages);
     await saveMessage({ chatID: chat._id, role: "user", content });
     const assistantMessage = await saveMessage({ chatID: chat._id, role: "assistant", content: answer.message });
+
+    if (isNewChat) {
+      try {
+        chat.title = await generateChatTitle(content);
+      } catch (titleError) {
+        console.warn("Could not generate chat title:", titleError.message);
+      }
+    }
+
     chat.updatedAt = new Date();
     await chat.save();
-
     return res.status(200).json({ chat, response: answer, message: assistantMessage });
   } catch (error) {
     next(error);

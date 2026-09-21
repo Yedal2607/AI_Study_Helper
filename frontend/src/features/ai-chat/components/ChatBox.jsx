@@ -1,6 +1,44 @@
-﻿import ReactMarkdown from "react-markdown";
+﻿import { useLayoutEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSendAIMessage } from "../hooks/useSendAIMessage";
 
+function ConversationHistoryItem({ chat, active, disabled, onSelect }) {
+  const containerRef = useRef(null);
+  const labelRef = useRef(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+
+  useLayoutEffect(() => {
+    const updateScrollDistance = () => {
+      if (!containerRef.current || !labelRef.current) return;
+      setScrollDistance(Math.max(0, labelRef.current.scrollWidth - containerRef.current.clientWidth));
+    };
+
+    updateScrollDistance();
+    const observer = new ResizeObserver(updateScrollDistance);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [chat.title]);
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      disabled={disabled}
+      aria-label={chat.title}
+      className={`group w-full overflow-hidden rounded-xl px-3 py-2.5 text-left text-sm transition ${active ? "bg-sky-500/20 text-sky-100" : "text-slate-300 hover:bg-white/5 hover:text-white"}`}
+    >
+      <div ref={containerRef} className="overflow-hidden">
+        <span
+          ref={labelRef}
+          style={{ "--scroll-distance": `${scrollDistance}px` }}
+          className={`block w-max transition-transform duration-700 ease-in-out ${scrollDistance > 0 ? "group-hover:translate-x-[calc(-1*var(--scroll-distance))]" : ""}`}
+        >
+          {chat.title}
+        </span>
+      </div>
+    </button>
+  );
+}
 function ChatBox() {
   const {
     text, setText, messages, conversations, activeChatId, loading, historyLoading,
@@ -18,9 +56,13 @@ function ChatBox() {
           <p className="px-2 pb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">Historial</p>
           <div className="min-h-0 flex-1 overflow-y-auto space-y-1">
             {historyLoading ? <p className="px-2 py-3 text-sm text-slate-400">Cargando...</p> : conversations.length === 0 ? <p className="px-2 py-3 text-sm text-slate-400">Aún no hay conversaciones.</p> : conversations.map((chat) => (
-              <button key={chat._id} type="button" onClick={() => selectConversation(chat._id)} disabled={loading} className={`w-full truncate rounded-xl px-3 py-2.5 text-left text-sm transition ${activeChatId === chat._id ? "bg-sky-500/20 text-sky-100" : "text-slate-300 hover:bg-white/5 hover:text-white"}`}>
-                Conversación {chat.title}
-              </button>
+              <ConversationHistoryItem
+                key={chat._id}
+                chat={chat}
+                active={activeChatId === chat._id}
+                disabled={loading}
+                onSelect={() => selectConversation(chat._id)}
+              />
             ))}
           </div>
           <button type="button" onClick={logout} className="mt-3 flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-red-500/15 hover:text-red-200">
@@ -52,5 +94,10 @@ function ChatBox() {
 }
 
 export default ChatBox;
+
+
+
+
+
 
 

@@ -19,4 +19,19 @@
   }
 }
 
+export const generateChatTitle = async (firstMessage) => {
+  const titlePrompt = [
+    "Genera un título breve y descriptivo para una conversación de estudio.",
+    "Usa únicamente el primer mensaje del usuario como contexto.",
+    "Devuelve solo el título, sin comillas, sin Markdown y con un máximo de 60 caracteres.",
+    `Primer mensaje: ${firstMessage}`,
+  ].join("\n");
+
+  const { message } = await AskAI(titlePrompt);
+  const title = message.replace(/[\r\n]+/g, " ").replace(/^['\"`]+|['\"`]+$/g, "").trim();
+  if (!title) throw new Error("AI returned an empty chat title");
+
+  return title.slice(0, 60);
+};
+
 export default AskAI;
