@@ -81,7 +81,7 @@ function ChatBox() {
         <button type="button" onClick={() => setSidebarOpen((open) => !open)} aria-label={sidebarOpen ? "Cerrar historial" : "Abrir historial"} className="absolute left-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#1b212b] text-lg transition hover:bg-white/10 sm:left-6">
           {sidebarOpen ? "‹" : "☰"}
         </button>
-        <div aria-live="polite" className={`min-h-0 flex-1 overflow-y-auto py-8 pb-36 sm:py-12 sm:pb-40 ${hasConversation ? "" : "flex items-center justify-center"}`}>
+        <div aria-live="polite" className={`scrollbar-hide min-h-0 flex-1 overflow-y-auto py-8 pb-36 sm:py-12 sm:pb-40 ${hasConversation ? "" : "flex items-center justify-center"}`}>
           {hasConversation ? (
             <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 pt-10">
               {messages.map((message) => message.role === "user" ? (
