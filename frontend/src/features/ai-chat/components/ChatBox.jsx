@@ -1,5 +1,8 @@
 ﻿import { useLayoutEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import { useSendAIMessage } from "../hooks/useSendAIMessage";
 
 function ConversationHistoryItem({ chat, active, disabled, onSelect }) {
@@ -39,6 +42,9 @@ function ConversationHistoryItem({ chat, active, disabled, onSelect }) {
     </button>
   );
 }
+
+
+
 function ChatBox() {
   const {
     text, setText, messages, conversations, activeChatId, loading, historyLoading,
@@ -81,7 +87,7 @@ function ChatBox() {
               {messages.map((message) => message.role === "user" ? (
                 <div key={message._id} className="flex justify-end"><p className="max-w-[85%] rounded-3xl rounded-br-md bg-sky-600 px-5 py-3.5 text-sm leading-6 shadow-lg sm:text-base">{message.content}</p></div>
               ) : (
-                <div key={message._id} className="flex gap-3 sm:gap-4"><div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 text-sm font-bold">AI</div><div className="min-w-0 flex-1 pt-1 text-slate-200"><ReactMarkdown components={{ p: ({ children }) => <p className="mb-4 text-[15px] leading-7 last:mb-0 sm:text-base">{children}</p>, h1: ({ children }) => <h1 className="mb-4 text-3xl font-bold text-white">{children}</h1>, h2: ({ children }) => <h2 className="mb-3 text-2xl font-semibold text-white">{children}</h2>, ul: ({ children }) => <ul className="mb-4 list-disc space-y-1 pl-5">{children}</ul>, ol: ({ children }) => <ol className="mb-4 list-decimal space-y-1 pl-5">{children}</ol>, code: ({ children }) => <code className="rounded bg-white/10 px-1.5 py-0.5 text-sky-200">{children}</code> }}>{message.content}</ReactMarkdown></div></div>
+                <div key={message._id} className="flex gap-3 sm:gap-4"><div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 text-sm font-bold">AI</div><div className="min-w-0 flex-1 pt-1 text-slate-200"><ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} components={{ p: ({ children }) => <p className="mb-4 text-[15px] leading-7 last:mb-0 sm:text-base">{children}</p>, h1: ({ children }) => <h1 className="mb-4 text-3xl font-bold text-white">{children}</h1>, h2: ({ children }) => <h2 className="mb-3 text-2xl font-semibold text-white">{children}</h2>, ul: ({ children }) => <ul className="mb-4 list-disc space-y-1 pl-5">{children}</ul>, ol: ({ children }) => <ol className="mb-4 list-decimal space-y-1 pl-5">{children}</ol>, code: ({ children }) => <code className="rounded bg-white/10 px-1.5 py-0.5 text-sky-200">{children}</code> }}>{message.content}</ReactMarkdown></div></div>
               ))}
               {loading && <div className="flex gap-3"><div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500 font-bold">AI</div><div className="flex items-center gap-1.5"><span className="h-2 w-2 animate-bounce rounded-full bg-sky-300" /><span className="h-2 w-2 animate-bounce rounded-full bg-sky-300 [animation-delay:-0.15s]" /><span className="h-2 w-2 animate-bounce rounded-full bg-sky-300 [animation-delay:-0.3s]" /></div></div>}
             </div>
