@@ -1,5 +1,5 @@
 ﻿import { useCallback, useEffect, useState } from "react";
-import { useAuth } from "../../authentication/context/AuthContext";
+import { useAuth } from "../../authentication/hooks/useAuth";
 
 const chatUrl = import.meta.env.VITE_BACKEND_URL
   ? `${import.meta.env.VITE_BACKEND_URL}/chat`
