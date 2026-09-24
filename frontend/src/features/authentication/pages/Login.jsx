@@ -9,7 +9,7 @@ import {
   faEyeSlash,
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import logo from "../../../assets/Logo.png";
 
 export const Login = () => {

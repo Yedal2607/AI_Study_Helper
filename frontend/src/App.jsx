@@ -2,7 +2,7 @@
 import ChatPage from "./features/ai-chat/pages/Chat"
 import { Login } from "./features/authentication/pages/Login"
 import { Register } from "./features/authentication/pages/Register"
-import { useAuth } from "./features/authentication/context/AuthContext"
+import { useAuth } from "./features/authentication/hooks/useAuth"
 
 function App() {
   const { isAuthenticated } = useAuth();

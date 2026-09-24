@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { AuthProvider } from './features/authentication/context/AuthContext'
+import { AuthProvider } from './features/authentication/context/AuthProvider'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 createRoot(document.getElementById('root')).render(
