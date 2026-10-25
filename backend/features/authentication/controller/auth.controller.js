@@ -11,7 +11,7 @@ export const register = async (req, res, next) => {
     next(error);
   }
 };
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
   
@@ -21,6 +21,6 @@ export const login = async (req, res) => {
   
   }
     catch (error) {
-    next(error);
+      next(error);
   }
 }
