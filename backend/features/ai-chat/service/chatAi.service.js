@@ -4,7 +4,7 @@
       .map(({ role, content }) => `${role === "user" ? "Usuario" : "Asistente"}: ${content}`)
       .join("\n");
     const prompt = conversation ? `${conversation}\nUsuario: ${userPrompt}\nAsistente:` : userPrompt;
-    const response = await fetch("http://localhost:11434/api/generate", {
+    const response = await fetch(process.env.AI_URL_PROVIDER, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ model: process.env.AI_MODEL, prompt, stream: false }),
