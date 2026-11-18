@@ -48,11 +48,14 @@ export const chatAI = async (req, res, next) => {
       chat = await getChatByIdForUser({ chatID: chatId, userID: req.user.userId });
       if (!chat) return res.status(404).json({ error: "Chat not found" });
       previousMessages = await getMessagesByChat(chat._id);
-    } else {
-      chat = await createChat({ userID: req.user.userId, title: "Nueva conversación" });
     }
 
     const answer = await AskAI(content, previousMessages);
+
+    if (isNewChat) {
+      chat = await createChat({ userID: req.user.userId, title: "Nueva conversación" });
+    }
+
     await saveMessage({ chatID: chat._id, role: "user", content });
     const assistantMessage = await saveMessage({ chatID: chat._id, role: "assistant", content: answer.message });
 
