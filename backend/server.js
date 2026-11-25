@@ -28,7 +28,9 @@ app.use((err, req, res, next) => {
 });
 
 /* MongoDB connection*/
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI,{
+    dbName: "AI_Study_HelperDB"
+})
   .then(() => {
     console.log("MongoDB connected");
     app.listen(PORT, () => {
